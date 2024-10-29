@@ -31,7 +31,7 @@ export default Gameboard = ({ navigation, route }) => {
   // Calculate total and check for bonus
   useEffect(() => {
     const total = dicePointsTotal.reduce((sum, points) => sum + points, 0);
-    
+
     // Calculate total score with bonus only if total meets the bonus threshold
     if (total >= BONUS_POINTS_LIMIT) {
       setTotalScore(total + BONUS_POINTS);  // Apply bonus once
@@ -39,7 +39,7 @@ export default Gameboard = ({ navigation, route }) => {
       setTotalScore(total);  // Set total score without bonus
     }
   }, [dicePointsTotal]);
-  
+
 
   const [totalScore, setTotalScore] = useState(0); // track the total score
 
@@ -80,11 +80,11 @@ export default Gameboard = ({ navigation, route }) => {
 
   const savePlayerPoints = async () => {
     const newKey = scores.length + 1;
-  
+
     // Calculate the final total points including the bonus if applicable
     const totalPoints = dicePointsTotal.reduce((acc, val) => acc + val, 0);
     const finalScore = totalPoints >= BONUS_POINTS_LIMIT ? totalPoints + BONUS_POINTS : totalPoints;
-  
+
     const playerPoints = {
       key: newKey,
       name: playerName,
@@ -92,7 +92,7 @@ export default Gameboard = ({ navigation, route }) => {
       time: new Date().toLocaleTimeString(),
       points: finalScore,
     };
-  
+
     try {
       const newScore = [...scores, playerPoints];
       const jsonValue = JSON.stringify(newScore);
@@ -103,13 +103,13 @@ export default Gameboard = ({ navigation, route }) => {
       console.log('Gameboard: Save error' + error);
     }
   };
-  
-/*   //testausta varten
-    const clearPlayerPoints = () => {
-    setScores([]);
-    AsyncStorage.removeItem(SCOREBOARD_KEY);
-    console.log('Gameboard: clear successful');
-  }; */
+
+  /*   //testausta varten
+      const clearPlayerPoints = () => {
+      setScores([]);
+      AsyncStorage.removeItem(SCOREBOARD_KEY);
+      console.log('Gameboard: clear successful');
+    }; */
 
   const dicesRow = [];
   for (let dice = 0; dice < NBR_OF_DICES; dice++) {
@@ -289,7 +289,7 @@ export default Gameboard = ({ navigation, route }) => {
           onPress={() => restartGame()}>
           <Text style={[styles.text, { fontWeight: 'bold' }]}>RESTART GAME</Text>
         </Pressable>
-{/*         <Pressable
+        {/*         <Pressable
           onPress={() => clearPlayerPoints()}>
           <Text style={styles.text}>clear points</Text>
         </Pressable> */}
