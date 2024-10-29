@@ -1,40 +1,41 @@
 import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { View, Text } from 'react-native';
+import { View, Text, Pressable, FlatList } from 'react-native';
 import Header from './Header';
 import Footer from './Footer';
 import { SCOREBOARD_KEY } from '../constants/Game';
 import styles from '../style/style';
 
-export default Scoreboard = ({navigation}) => {
+export default Scoreboard = ({ navigation }) => {
 
   const [scores, setScores] = useState([]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       getScoreboardData();
-    })
+    });
     return unsubscribe;
   }, [navigation]);
-
-  const getScoreboardData = async() => {
-    try{
+  
+  const getScoreboardData = async () => {
+    console.log('Scoreboard: Reading data...');
+    try {
       const jsonValue = await AsyncStorage.getItem(SCOREBOARD_KEY);
       if (jsonValue !== null) {
         const tempScores = JSON.parse(jsonValue);
-        // ope versiossa tässä välissä tehdään lajittelu pistemäärän perusteella laskevassa järjestyksessä
-        // (vinkki harkkatyön tehtävänannossa "for sorting scoreboard")
+        tempScores.sort((a, b) => b.points - a.points);
         setScores(tempScores);
-        console.log('Scoreboard: read successfull');
-        console.log('Scoreboard: number of scores: ' + tempScores.length);
+        console.log('Scoreboard: Read success', tempScores);
+      } else {
+        console.log('Scoreboard: No data found');
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.log('Scoreboard: Read error' + error);
     }
-  }
+  };
+  
 
-  const clearScoreboard = async() => {
+  const clearScoreboard = async () => {
     try {
       await AsyncStorage.removeItem(SCOREBOARD_KEY);
       setScores([]);
@@ -44,13 +45,33 @@ export default Scoreboard = ({navigation}) => {
     }
   }
 
+  const renderItem = ({ item }) => (
+    <View style={styles.row}>
+      <Text>Name: {item.name}</Text>
+      <Text>Date: {item.date} - {item.time}</Text>
+      <Text>Points: {item.points}</Text>
+    </View>
+  );
+
   return (
-      <>
-          <Header />
-          <View>
-            <Text>Scoreboard will be here...</Text>
-          </View>
-          <Footer />
-      </>
+    <>
+      <Header />
+      <View style={{ flex: 1 }}>
+        <Text style={styles.textTitle}>Scoreboard</Text>
+        <Pressable onPress={clearScoreboard}>
+          <Text style={styles.buttonText}>Clear Scores</Text>
+        </Pressable>
+                <View style={styles.list}>
+        <FlatList 
+          style={styles.list}
+          data={scores}
+          renderItem={renderItem}
+          ListEmptyComponent={<Text>No scores saved yet.</Text>}
+        />
+        </View>
+      </View>
+      <Footer />
+    </>
   );
 }
+  

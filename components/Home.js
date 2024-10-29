@@ -21,8 +21,8 @@ export default Home = ({navigation}) => {
     return (
         <>
             <Header />
-            <View>
-                <MaterialCommunityIcons name='home' size={90} color='steelblue' />
+            <View style={{alignItems: 'center'}}>
+                <MaterialCommunityIcons name='home' size={90} color='green' style={{justifyContent: 'center'}} />
                 {!hasPlayerName ?
                     <>
                         <Text>For scoreboard enter your name...</Text>
@@ -30,13 +30,14 @@ export default Home = ({navigation}) => {
                         <Pressable
                             onPress={() => handlePlayerName(playerName)}
                         >
-                            <Text>OK</Text>
+                            <Text style={{ fontWeight: 'bold' }}>OK</Text>
                         </Pressable>
                     </>
                     :
                     <>
-                        <Text>Rules of the game</Text>
-                        <Text multiline="true">
+                        <Text style={{ fontWeight: 'bold' }}>Rules of the game</Text>
+                        <Text multiline="true"
+                        style={styles.text}>
                             THE GAME: Upper section of the classic Yahtzee
                             dice game. You have {NBR_OF_DICES} dices and
                             for the every dice you have {NBR_OF_THROWS}
@@ -47,10 +48,10 @@ export default Home = ({navigation}) => {
                             Game ends when all points have been selected.
                             The order for selecting those is free
                         </Text>
-                        <Text>Good luck, {playerName}</Text>
+                        <Text style={{ fontWeight: 'bold' }}>Good luck, {playerName}</Text>
                         <Pressable
                             onPress={() => navigation.navigate('Gameboard', {player: playerName})}>
-                            <Text>PLAY</Text>
+                            <Text style={{ fontWeight: 'bold' }}>PLAY</Text>
                         </Pressable>
                     </>
                 }

@@ -5,21 +5,32 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff'
   },
+  list: {
+    flex: 1,
+    paddingBottom: 10,
+  },
   header: {
     marginTop: 30,
     marginBottom: 15,
-    backgroundColor: 'skyblue',
+    backgroundColor: '#03860e',
     flexDirection: 'row',
   },
   footer: {
     marginTop: 20,
-    backgroundColor: 'skyblue',
+    backgroundColor: '#03860e',
     flexDirection: 'row'
   },
   title: {
     color: '#fff',
     fontWeight: 'bold',
     flex: 1,
+    fontSize: 23,
+    textAlign: 'center',
+    margin: 10,
+  },
+  textTitle: {
+    color: '#000000',
+    fontWeight: 'bold',
     fontSize: 23,
     textAlign: 'center',
     margin: 10,
@@ -64,5 +75,9 @@ export default StyleSheet.create({
   buttonText: {
     color:"#2B2B52",
     fontSize: 20
-  }
+  },
+  text: {
+    textAlign: 'center',
+    padding: 2,
+  },
 });
