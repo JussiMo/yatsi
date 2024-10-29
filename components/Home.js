@@ -6,7 +6,7 @@ import Footer from './Footer';
 import { NBR_OF_DICES, NBR_OF_THROWS, MIN_SPOT, MAX_SPOT, BONUS_POINTS, BONUS_POINTS_LIMIT } from '../constants/Game';
 import styles from '../style/style';
 
-export default Home = ({ navigation }) => {
+export default Home = ({navigation}) => {
 
     const [playerName, setPlayerName] = useState('');
     const [hasPlayerName, setHasPlayerName] = useState(false);
@@ -17,11 +17,6 @@ export default Home = ({ navigation }) => {
             Keyboard.dismiss();
         }
     }
-
-    const changePlayerName = () => {
-        setPlayerName(''); // Reset the player name
-        setHasPlayerName(false); // Allow to enter a new player name
-    };
 
     return (
         <>
@@ -42,7 +37,7 @@ export default Home = ({ navigation }) => {
                     <>
                         <Text style={[styles.text, { fontWeight: 'bold' }]}>Rules of the game</Text>
                         <Text multiline="true"
-                            style={styles.text}>
+                        style={styles.text}>
                             THE GAME: Upper section of the classic Yahtzee
                             dice game. You have {NBR_OF_DICES} dices and
                             for the every dice you have {NBR_OF_THROWS}
@@ -55,11 +50,8 @@ export default Home = ({ navigation }) => {
                         </Text>
                         <Text style={[styles.text, { fontWeight: 'bold' }]}>Good luck, {playerName}</Text>
                         <Pressable
-                            onPress={() => navigation.navigate('Gameboard', { player: playerName })}>
+                            onPress={() => navigation.navigate('Gameboard', {player: playerName})}>
                             <Text style={[styles.text, { fontWeight: 'bold' }]}>PLAY</Text>
-                        </Pressable>
-                        <Pressable onPress={changePlayerName}>
-                            <Text style={[styles.text, { fontWeight: 'bold', padding: 20 }]}>CHANGE PLAYER</Text>
                         </Pressable>
                     </>
                 }
