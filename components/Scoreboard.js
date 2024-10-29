@@ -56,17 +56,17 @@ export default Scoreboard = ({ navigation }) => {
   return (
     <>
       <Header />
-      <View style={{ flex: 1 }}>
+      <View style={styles.content}>
         <Text style={styles.textTitle}>Scoreboard</Text>
         <Pressable onPress={clearScoreboard}>
-          <Text style={styles.buttonText}>Clear Scores</Text>
+          <Text style={[styles.buttonText, { fontWeight: 'bold', textAlign:'center' }]}>Clear Scores</Text>
         </Pressable>
                 <View style={styles.list}>
         <FlatList 
-          style={styles.list}
+          style={[styles.list, {fontSize: 16}]}
           data={scores}
           renderItem={renderItem}
-          ListEmptyComponent={<Text>No scores saved yet.</Text>}
+          ListEmptyComponent={<Text style={styles.text}>No scores saved yet.</Text>}
         />
         </View>
       </View>

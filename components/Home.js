@@ -21,21 +21,21 @@ export default Home = ({navigation}) => {
     return (
         <>
             <Header />
-            <View style={{alignItems: 'center'}}>
-                <MaterialCommunityIcons name='home' size={90} color='green' style={{justifyContent: 'center'}} />
+            <View style={styles.content}>
+                <MaterialCommunityIcons name='home' size={90} color='green' />
                 {!hasPlayerName ?
                     <>
-                        <Text>For scoreboard enter your name...</Text>
+                        <Text style={[styles.text, { fontWeight: 'bold' }]}>For scoreboard enter your name...</Text>
                         <TextInput onChangeText={setPlayerName} autoFocus={true} />
                         <Pressable
                             onPress={() => handlePlayerName(playerName)}
                         >
-                            <Text style={{ fontWeight: 'bold' }}>OK</Text>
+                            <Text style={[styles.text, { fontWeight: 'bold' }]}>OK</Text>
                         </Pressable>
                     </>
                     :
                     <>
-                        <Text style={{ fontWeight: 'bold' }}>Rules of the game</Text>
+                        <Text style={[styles.text, { fontWeight: 'bold' }]}>Rules of the game</Text>
                         <Text multiline="true"
                         style={styles.text}>
                             THE GAME: Upper section of the classic Yahtzee
@@ -48,10 +48,10 @@ export default Home = ({navigation}) => {
                             Game ends when all points have been selected.
                             The order for selecting those is free
                         </Text>
-                        <Text style={{ fontWeight: 'bold' }}>Good luck, {playerName}</Text>
+                        <Text style={[styles.text, { fontWeight: 'bold' }]}>Good luck, {playerName}</Text>
                         <Pressable
                             onPress={() => navigation.navigate('Gameboard', {player: playerName})}>
-                            <Text style={{ fontWeight: 'bold' }}>PLAY</Text>
+                            <Text style={[styles.text, { fontWeight: 'bold' }]}>PLAY</Text>
                         </Pressable>
                     </>
                 }

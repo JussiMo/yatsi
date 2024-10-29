@@ -5,6 +5,10 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff'
   },
+  content: {
+    flex: 1,
+    alignItems: 'center',
+  },
   list: {
     flex: 1,
     paddingBottom: 10,
@@ -79,5 +83,8 @@ export default StyleSheet.create({
   text: {
     textAlign: 'center',
     padding: 2,
+    fontSize: 16,
+    margin: 5,
+    fontFamily: 'Roboto'
   },
 });

@@ -260,7 +260,7 @@ export default Gameboard = ({ navigation, route }) => {
   return (
     <>
       <Header />
-      <View>
+      <View style={styles.content}>
         <Container style={styles.row}>
           <Row>{dicesRow}</Row>
         </Container>
@@ -270,7 +270,7 @@ export default Gameboard = ({ navigation, route }) => {
           onPress={() => throwDices()}>
           <Text style={[styles.text, { fontWeight: 'bold' }]}>ROLL DICE</Text>
         </Pressable>
-        <Container styl>
+        <Container>
           <Row>{pointsRow}</Row>
         </Container>
         <Container>
